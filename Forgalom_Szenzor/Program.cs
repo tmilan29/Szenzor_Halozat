@@ -1,44 +1,26 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
+using Traffic;
 
 namespace Adateloallitas
 {
-    class Traffic
-    {
-        public int id {  get; set; }
-        public string address { get; set; }
-        public string day { get; set; }
-        public int novehicles { get; set; }
-        public double avgspeed { get; set; }
-        public bool roadblock { get; set; }
-
-        public Traffic(int Id, string Address, string Day, int Novehicles, double Avgspeed, bool Roadblock)
-        {
-            this.id = Id;
-            this.address = Address;
-            this.day = Day;
-            this.novehicles = Novehicles;
-            this.avgspeed = Avgspeed;
-            this.roadblock = Roadblock;
-        }
-    }
-
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            List<Traffic> outputs = new List<Traffic>();
-            List<string> days = new List<string>() { "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek"};
+        public delegate void ExportToTxt();
 
+        static List<Traffic.Traffic> traffics()
+        {
+            List<Traffic.Traffic> outputs = new List<Traffic.Traffic>();
+            List<string> days = new List<string>() { "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek" };
             Random r = new Random();
 
             foreach (string day in days)
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    int id = i+1;
-                    switch (id) 
+                    int id = i + 1;
+                    switch (id)
                     {
                         case 1:
                             string address = "Holland fasor 2, Auchan";
@@ -58,8 +40,8 @@ namespace Adateloallitas
                             {
                                 roadblock = true;
                             }
-                            else {roadblock = false;}
-                            outputs.Add(new Traffic(id, address, day, novehicles, avgspeed, roadblock));
+                            else { roadblock = false; }
+                            outputs.Add(new Traffic.Traffic(id, address, day, novehicles, Math.Round(avgspeed,2), roadblock));
                             break;
 
                         case 2:
@@ -81,7 +63,7 @@ namespace Adateloallitas
                                 roadblock = true;
                             }
                             else { roadblock = false; }
-                            outputs.Add(new Traffic(id, address, day, novehicles, avgspeed, roadblock));
+                            outputs.Add(new Traffic.Traffic(id, address, day, novehicles, Math.Round(avgspeed, 2), roadblock));
                             break;
 
                         case 3:
@@ -103,7 +85,7 @@ namespace Adateloallitas
                                 roadblock = true;
                             }
                             else { roadblock = false; }
-                            outputs.Add(new Traffic(id, address, day, novehicles, avgspeed, roadblock));
+                            outputs.Add(new Traffic.Traffic(id, address, day, novehicles, Math.Round(avgspeed, 2), roadblock));
                             break;
 
                         case 4:
@@ -125,17 +107,26 @@ namespace Adateloallitas
                                 roadblock = true;
                             }
                             else { roadblock = false; }
-                            outputs.Add(new Traffic(id, address, day, novehicles, avgspeed, roadblock));
+                            outputs.Add(new Traffic.Traffic(id, address, day, novehicles, Math.Round(avgspeed, 2), roadblock));
                             break;
 
-                        default: Console.WriteLine("ID not found");
+                        default:
+                            Console.WriteLine("ID not found");
                             break;
                     }
                 }
             }
+            return outputs;
+        }
 
-            
+        static void Main(string[] args)
+        {
+            List<Traffic.Traffic> outputs = traffics();
 
+            foreach (Traffic.Traffic t in outputs)
+            {
+                
+            }
 
 
         }
