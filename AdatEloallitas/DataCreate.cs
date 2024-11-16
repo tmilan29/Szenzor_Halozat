@@ -121,13 +121,23 @@ namespace Adateloallitas
 
         static void Main(string[] args)
         {
-            string json = JsonConvert.SerializeObject(traffics(), Newtonsoft.Json.Formatting.Indented);
-            FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
+            try
+            {
+                string json = JsonConvert.SerializeObject(traffics(), Newtonsoft.Json.Formatting.Indented);
+                FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
 
-            StreamWriter sw = new StreamWriter(fsjson);
-            sw.WriteLine(json);
-            sw.Flush();
-            sw.Close();
+                StreamWriter sw = new StreamWriter(fsjson);
+                sw.WriteLine(json);
+                sw.Flush();
+                sw.Close();
+                Console.WriteLine("Adatok sikeresen exportálva!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
         }
     }
 }
