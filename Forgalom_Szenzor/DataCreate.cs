@@ -5,9 +5,9 @@ using Traffic;
 
 namespace Adateloallitas
 {
-    internal class Program
+    internal class DataCreate
     {
-        public delegate void ExportToTxt();
+        public delegate void TrafficExportToTxt(Traffic.Traffic traffic);
 
         static List<Traffic.Traffic> traffics()
         {
@@ -123,12 +123,22 @@ namespace Adateloallitas
         {
             List<Traffic.Traffic> outputs = traffics();
 
+            string Path = "C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.txt";
+            StreamWriter sw = new StreamWriter(Path);
+            
+            TrafficExportToTxt writeToFile = traffic =>
+            {
+                sw.WriteLine(traffic.ToString());
+            };
+
             foreach (Traffic.Traffic t in outputs)
             {
-                
+                writeToFile(t);
+
             }
 
-
+            sw.Flush();
+            sw.Close();
         }
     }
 }
