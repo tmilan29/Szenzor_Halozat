@@ -2,13 +2,12 @@
 using System.IO;
 using System.Collections.Generic;
 using Traffic;
+using Newtonsoft.Json;
 
 namespace Adateloallitas
 {
     internal class DataCreate
     {
-        public delegate void TrafficExportToTxt(Traffic.Traffic traffic);
-
         static List<Traffic.Traffic> traffics()
         {
             List<Traffic.Traffic> outputs = new List<Traffic.Traffic>();
@@ -121,22 +120,9 @@ namespace Adateloallitas
 
         static void Main(string[] args)
         {
-            List<Traffic.Traffic> outputs = traffics();
-
-            string Path = "C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.txt";
-            StreamWriter sw = new StreamWriter(Path);
-            
-            TrafficExportToTxt writeToFile = traffic =>
-            {
-                sw.WriteLine(traffic.ToString());
-            };
-
-            foreach (Traffic.Traffic t in outputs)
-            {
-                writeToFile(t);
-
-            }
-
+            StreamWriter sw = new StreamWriter("traffic.txt");
+            string json = JsonConvert.SerializeObject(traffics(), Formatting.Indented);
+            sw.WriteLine(json);
             sw.Flush();
             sw.Close();
         }
