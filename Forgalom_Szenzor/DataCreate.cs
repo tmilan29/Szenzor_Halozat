@@ -3,6 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using Traffic;
 using Newtonsoft.Json;
+using System.Xml;
 
 namespace Adateloallitas
 {
@@ -22,7 +23,7 @@ namespace Adateloallitas
                     switch (id)
                     {
                         case 1:
-                            string address = "Holland fasor 2, Auchan";
+                            string address = "Holland fasor 2, Tesco";
                             int novehicles = r.Next(20, 51);
                             double avgspeed = 0;
                             if (novehicles > 35)
@@ -40,7 +41,7 @@ namespace Adateloallitas
                                 roadblock = true;
                             }
                             else { roadblock = false; }
-                            outputs.Add(new Traffic.Traffic(id, address, day, novehicles, Math.Round(avgspeed,2), roadblock));
+                            outputs.Add(new Traffic.Traffic(id, address, day, novehicles, Math.Round(avgspeed, 2), roadblock));
                             break;
 
                         case 2:
@@ -120,8 +121,10 @@ namespace Adateloallitas
 
         static void Main(string[] args)
         {
-            StreamWriter sw = new StreamWriter("traffic.txt");
-            string json = JsonConvert.SerializeObject(traffics(), Formatting.Indented);
+            string json = JsonConvert.SerializeObject(traffics(), Newtonsoft.Json.Formatting.Indented);
+            FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
+
+            StreamWriter sw = new StreamWriter(fsjson);
             sw.WriteLine(json);
             sw.Flush();
             sw.Close();
