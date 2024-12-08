@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using Traffic;
 using Newtonsoft.Json;
+using Microsoft.Data.Sqlite;
 
 namespace AdatFeldolgozas
 {
@@ -76,6 +77,22 @@ namespace AdatFeldolgozas
             Console.Clear();
 
             Traffic.Traffic.UtzarVolt(traffics);
+            Console.WriteLine("\nTovábbhaladáshoz nyomj le egy karaktert!");
+            Console.ReadKey();
+            Console.Clear();
+
+            //Gergő és Milán közös - SQLite DB
+            try
+            {
+                using var connection = new SqliteConnection("Data Source=traffic.db");
+                Console.WriteLine("Adatbázishoz sikeresen kapcsolódva.");
+
+            }
+            catch(SqliteException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
         }
     }
 }
