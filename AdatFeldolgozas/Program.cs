@@ -9,6 +9,7 @@ namespace AdatFeldolgozas
 {
     internal class Program
     {
+        //Milán - adatok beolvasása, JSON deszerializálás
         static void Event(string text)
         {
             Console.WriteLine(text);
@@ -59,7 +60,22 @@ namespace AdatFeldolgozas
                 Console.WriteLine(t.ToString());
             }
 
+            //Gergő - LINQ
+            Console.WriteLine("\nTovábbhaladáshoz nyomj le egy karaktert!");
+            Console.ReadKey();
+            Console.Clear();
 
+            Traffic.Traffic.Sorbarendezes(traffics);
+            Console.WriteLine("\nTovábbhaladáshoz nyomj le egy karaktert!");
+            Console.ReadKey();
+            Console.Clear();
+
+            Traffic.Traffic.NagyobbVolt(traffics);
+            Console.WriteLine("\nTovábbhaladáshoz nyomj le egy karaktert!");
+            Console.ReadKey();
+            Console.Clear();
+
+            Traffic.Traffic.UtzarVolt(traffics);
         }
     }
 }

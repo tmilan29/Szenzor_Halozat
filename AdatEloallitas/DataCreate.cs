@@ -9,6 +9,7 @@ namespace Adateloallitas
 {
     internal class DataCreate
     {
+        //Milán - adatok generálása, egyszerű módszerrel. Próbáltuk az adatokat úgy generáltatni, hogy nagyjából fedjék a valóságot
         static List<Traffic.Traffic> traffics()
         {
             List<Traffic.Traffic> outputs = new List<Traffic.Traffic>();
@@ -121,10 +122,11 @@ namespace Adateloallitas
 
         static void Main(string[] args)
         {
+            //Milán - Traffics lista elemeinek kiírása JSON fájlba
             try
             {
                 string json = JsonConvert.SerializeObject(traffics(), Newtonsoft.Json.Formatting.Indented);
-                FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
+                FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\tmilan29\\Szenzor_Halozat\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
 
                 StreamWriter sw = new StreamWriter(fsjson);
                 sw.WriteLine(json);
