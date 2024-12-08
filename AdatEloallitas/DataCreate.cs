@@ -124,7 +124,7 @@ namespace Adateloallitas
             try
             {
                 string json = JsonConvert.SerializeObject(traffics(), Newtonsoft.Json.Formatting.Indented);
-                FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\Forgalom_Szenzor\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
+                FileStream fsjson = new FileStream("C:\\Users\\Milan\\Downloads\\tmilan29\\Szenzor_Halozat\\AdatFeldolgozas\\bin\\Debug\\net8.0\\traffic.json", FileMode.Create, FileAccess.Write);
 
                 StreamWriter sw = new StreamWriter(fsjson);
                 sw.WriteLine(json);
