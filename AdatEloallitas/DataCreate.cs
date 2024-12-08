@@ -9,6 +9,7 @@ namespace Adateloallitas
 {
     internal class DataCreate
     {
+        //Milán - adatok generálása, egyszerű módszerrel. Próbáltuk az adatokat úgy generáltatni, hogy nagyjából fedjék a valóságot
         static List<Traffic.Traffic> traffics()
         {
             List<Traffic.Traffic> outputs = new List<Traffic.Traffic>();
@@ -121,6 +122,7 @@ namespace Adateloallitas
 
         static void Main(string[] args)
         {
+            //Milán - Traffics lista elemeinek kiírása JSON fájlba
             try
             {
                 string json = JsonConvert.SerializeObject(traffics(), Newtonsoft.Json.Formatting.Indented);
