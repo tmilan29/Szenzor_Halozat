@@ -1,6 +1,6 @@
 # Haladó szoftverfejlesztés - féléves beadandó
 **Szenzorhálózat szimulációja, adatfeldolgozás C#-al**
 
-Molnár Gergő - 
+Molnár Gergő - PELVTZ
 
 Takács Milán - EVZ0PN
